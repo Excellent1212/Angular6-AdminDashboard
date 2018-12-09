@@ -1,0 +1,66 @@
+
+<div class="card m-3 userinfo">
+
+    <div class="card-header">
+      <img src="{{apiurl}}upload/profile/{{user_details.profile_image}}" class="profile-image " onerror='this.onerror=null;this.src="assets/default/user.png"' height='50px' width='50px'/>
+      {{user_details.name}}'s Profile
+    </div>
+    <div class="card-body">
+      <div *ngIf = "user_details.aboutUs">
+        <h6>About Us</h6>
+        <p>{{user_details.aboutUs}}</p> 
+      </div>
+      <table class="table">
+        <tbody>
+          <tr *ngIf = "user_details.username">
+            <th>Username</th>
+            <td>{{user_details.username}}</td>
+          </tr>
+          <tr *ngIf = "user_details.type">
+            <th>Type</th>
+            <td>{{user_details.type}}</td>
+          </tr>
+          <tr *ngIf = "user_details.email">
+            <th>Email</th>
+            <td>{{user_details.email}}</td>
+          </tr>
+          <tr *ngIf = "user_details.category.length !=0">
+            <th>Categories</th>
+            <td>
+              <div *ngFor="let category of user_details.category">
+                <span class="badge badge-success">{{category.name | titlecase}}</span>
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf = "user_details.phone">
+            <th>Phone Number</th>
+            <td>{{user_details.phone}}</td>
+          </tr>
+          <tr *ngIf = "user_details.city">
+            <th>Address</th>
+            <td>{{user_details.city}}</td>
+          </tr>
+          <tr *ngIf = "user_details.formatted_address">
+            <th>City</th>
+            <td>{{user_details.formatted_address}}</td>
+          </tr>
+          <tr *ngIf = "user_details.createdAt">
+            <th>Created</th>
+            <td>{{user_details.createdAt | date}}</td>
+          </tr>
+          <tr *ngIf = "user_details.dob">
+            <th>Birth Date</th>
+            <td>{{user_details.dob | date}}</td>
+          </tr>
+          <tr *ngIf = "user_details.wallet">
+            <th>Wallet</th>
+            <td>{{user_details.wallet | currency}}</td>
+          </tr>
+          <tr *ngIf = "user_details.escrowWallet">
+            <th>EscrowWallet</th>
+            <td>{{user_details.escrowWallet | currency}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

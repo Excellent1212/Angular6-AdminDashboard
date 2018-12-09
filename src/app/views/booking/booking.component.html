@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        Booking
+      </div>
+      <div class="card-body">
+        <div class="table table-responsive">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table">
+            <thead>
+              <tr>
+                <th>Customer Image</th>
+                <th>Booking ID</th>
+                <th>Customer Name</th>
+                <th>Service Provider</th>
+                <th>Status</th>
+                <th>Booking Time</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="bookings?.length != 0">
+              <tr *ngFor="let item of bookings">
+                <td>
+                  <img src="{{url+item.profile_image}}" class="category-image" onerror="this.onerror=null;this.src='assets/img/default/user.png';" />
+                <td>
+                  <span class='text-capitalize'>
+                    {{ item.bookingId }}
+                  </span>
+                </td>
+                <td>
+                  <span class='text-capitalize'>
+                    {{ item.userId.name }}
+                  </span>
+                </td>
+                <td>
+                  <span class='text-capitalize'>
+                    {{ item.service_user.name }}
+                  </span>
+                </td>
+                <td>
+                  <span class='text-capitalize'>
+                    {{ item.status }}
+                  </span>
+                </td>
+                <td>
+                  <span class='text-capitalize'>
+                    {{item.booking_start | date:'MMM d, y, hh:mm a'}} to {{item.booking_end | date:'hh:mm a'}}
+                  </span>
+                </td>
+                <td>
+                  <div class="btn-group booking-menu" dropdown>
+                    <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                      aria-controls="dropdown-basic">
+                      <i class="fa fa-bars" aria-hidden="true"></i>
+                    </button>
+                    <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                      <li role="menuitem">
+                        <a class="dropdown-item" (click)="ForceRefundEvent(item._id)">
+                          Force Refund
+                        </a>
+                      </li>
+                      <li role="menuitem" *ngIf="item.status == 'open'">
+                        <a class="dropdown-item" (click)="MarkAsCompletesEvent(item._id)">
+                          Mark As Completed
+                        </a>
+                      </li>
+                      <li role="menuitem" *ngIf="item.status == 'open'">
+                        <a class="dropdown-item">
+                          Reschedule
+                        </a>
+                      </li>
+                      <li role="menuitem" *ngIf="item.status == 'open'">
+                        <a class="dropdown-item" (click)="CancelBookingEvent(item._id)">
+                          Cancel Booking
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <!-- <tbody *ngIf="bookings?.length == 0">
+              <tr>
+                <td colspan="7" class="no-data-available">No data!</td>
+              </tr>
+            <tbody> -->
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-lg-12">
+    <form class="form-horizontal" (ngSubmit)="submit(form.valid)" [formGroup]="form">
+      <div class="card">
+        <div class="card-header">
+          <ng-container *ngIf="!isEdit">Add New </ng-container>
+          <ng-container *ngIf="isEdit">Update</ng-container>
+          Category
+        </div>
+        <div class="card-body">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">Category Name</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" placeholder="Category Name" [(ngModel)]="formData.name" name="name"
+                formControlName="name">
+              <ng-container *ngIf="!form.controls['name'].valid && isFormSubmited">
+                <span class="error">This field is required</span>
+              </ng-container>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">Description</label>
+            <div class="col-md-9">
+              <textarea type="text" class="form-control" placeholder="Description" [(ngModel)]="formData.description" name="description"
+                formControlName="description"></textarea>
+              <ng-container *ngIf="!form.controls['description'].valid && isFormSubmited">
+                <span class="error">This field is required</span>
+              </ng-container>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="file-input">Category Icon</label>
+            <div class="col-md-9">
+              <input type="file" [(ngModel)]="formData.icon_name" (change)="changeIcon($event)" name="icon"
+                formControlName="icon_name">
+              <ng-container *ngIf="!form.controls['icon_name'].valid && isFormSubmited">
+                <span class="error">This field is required</span>
+              </ng-container>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="file-multiple-input">Category Image</label>
+            <div class="col-md-9">
+              <input type="file" [(ngModel)]="formData.image_name" name="image" (change)="changeImage($event)"
+                formControlName="image_name">
+              <ng-container *ngIf="!form.controls['image_name'].valid && isFormSubmited">
+                <span class="error">This field is required</span>
+              </ng-container>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="file-multiple-input">Is Display On Home Page</label>
+            <div class="col-md-9">
+              <p-inputSwitch [(ngModel)]="formData.isDisplay" name="is_display" formControlName="isDisplay"></p-inputSwitch>
+              <ng-container *ngIf="!form.controls['image_name'].valid && isFormSubmited">
+                <span class="error">This field is required</span>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

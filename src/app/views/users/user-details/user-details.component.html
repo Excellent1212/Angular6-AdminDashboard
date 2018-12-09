@@ -1,0 +1,22 @@
+<div class="tab-container" style="margin-top:25px">
+  <ul class="nav nav-tabs">
+    <li class="nav-item active">
+      <a class="nav-link" [ngClass]="{'active':page == 'info'}" [routerLink]="['/users/',userId,'info']">
+        <span>Basic Information</span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf = "user_type != 'customer'">
+      <a class="nav-link" [ngClass]="{'active':page == 'services'}" [routerLink]="['/users/',userId,'services']">
+        <span>Services</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [ngClass]="{'active':page == 'bookings'}" [routerLink]="['/users/',userId,'bookings']">
+        <span>Bookings</span>
+      </a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
