@@ -53,4 +53,4 @@ free-angular-admin-template/
 
 # Screen Video
 
-https://www.useloom.com/share/cca781480b494530aff792e89a32cc91
+https://www.useloom.com/share/871fcb317fc443e7b57b4e2c7120db75
